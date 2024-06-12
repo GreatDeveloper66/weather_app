@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+const visualCrossingURL = import.meta.env.VITE_VISUAL_CROSSING_API_URL;
 
 const getCurrentPosition = () => {
   return new Promise((resolve, reject) => {
@@ -14,7 +15,7 @@ const getCurrentPosition = () => {
 const getWeatherDataService = async () => {
   try {
     const [latitude, longitude] = await getCurrentPosition();
-    const response = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}?key=${apiKey}`, {
+    const response = await axios.get(`${visualCrossingURL}/${latitude},${longitude}?key=${apiKey}`, {
       headers: {
         'Content-Type': 'application/json',
       }
