@@ -27,7 +27,7 @@ const updateWeatherData = (data) => {
       sunrise: data.sunriseTime,
       sunset: data.sunsetTime,
       img: data.svgArray[0],
-      todayDate: data.week.today,
+      todayDate: data.week[0],
       location: data.location
     },
     forecast: {
@@ -36,42 +36,42 @@ const updateWeatherData = (data) => {
         conditions: data.days[0].conditions,
         description: data.days[0].description,
         img: data.svgArray[1],
-        day: data.week.tomorrow
+        day: data.week[1]
       },
       day2: {
         temperature: data.days[1].temp,
         conditions: data.days[1].conditions,
         description: data.days[1].description,
         img: data.svgArray[2],
-        day: data.week.dayAfterTomorrow
+        day: data.week[2]
       },
       day3: {
         temperature: data.days[2].temp,
         conditions: data.days[2].conditions,
         description: data.days[2].description,
         img: data.svgArray[3],
-        day: data.week.twoDaysAfterTomorrow
+        day: data.week[3]
       },
       day4: {
         temperature: data.days[3].temp,
         conditions: data.days[3].conditions,
         description: data.days[3].description,
         img: data.svgArray[4],
-        day: data.week.threeDaysAfterTomorrow
+        day: data.week[4]
       },
       day5: {
         temperature: data.days[4].temp,
         conditions: data.days[4].conditions,
         description: data.days[4].description,
         img: data.svgArray[5],
-        day: data.week.fourDaysAfterTomorrow
+        day: data.week[5]
       },
       day6: {
         temperature: data.days[5].temp,
         conditions: data.days[5].conditions,
         description: data.days[5].description,
         img: data.svgArray[6],
-        day: data.week.fiveDaysAfterTomorrow
+        day: data.week[6]
       }
     }
   };
@@ -82,6 +82,7 @@ onMounted(async () => {
     const data = await getWeatherDataService();
     console.log('Data:', data);
     data.week = getAWeekOfDates();
+    console.log('Week:', data.week)
     const svgArray = await getIcons([data.currentConditions.icon, data.days[0].icon, data.days[1].icon, data.days[2].icon, data.days[3].icon, data.days[4].icon, data.days[5].icon]);
     data.location = await getCurrentLocationFromLatitudeAndLongitude(data.latitude, data.longitude);
     data.currentConditions.icon = svgArray[0];

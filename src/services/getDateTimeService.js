@@ -20,23 +20,15 @@ const translateMilitaryTimeToStandardTime = (militaryTime) => {
 
 
 const getAWeekOfDates = () => {
-    const today = getCurrentDateInTextFormat();
-    const tommorow = getCurrentDateInTextFormatInXDays(1);
-    const dayAfterTommorow = getCurrentDateInTextFormatInXDays(2);
-    const twoDaysAfterTommorow = getCurrentDateInTextFormatInXDays(3);
-    const threeDaysAfterTommorow = getCurrentDateInTextFormatInXDays(4);
-    const fourDaysAfterTommorow = getCurrentDateInTextFormatInXDays(5);
-    const fiveDaysAfterTommorow = getCurrentDateInTextFormatInXDays(6);
-
-    return {
-        "today": today,
-        "tomorrow": tommorow,
-        "dayAfterTomorrow": dayAfterTommorow,
-        "twoDaysAfterTommorow": twoDaysAfterTommorow,
-        "threeDaysAfterTommorow": threeDaysAfterTommorow,
-        "fourDaysAfterTommorow": fourDaysAfterTommorow,
-        "fiveDaysAfterTommorow": fiveDaysAfterTommorow
-    };
+    return [
+        getCurrentDateInTextFormat(),
+        getCurrentDateInTextFormatInXDays(1),
+        getCurrentDateInTextFormatInXDays(2),
+        getCurrentDateInTextFormatInXDays(3),
+        getCurrentDateInTextFormatInXDays(4),
+        getCurrentDateInTextFormatInXDays(5),
+        getCurrentDateInTextFormatInXDays(6)
+    ];
 
 }
 
