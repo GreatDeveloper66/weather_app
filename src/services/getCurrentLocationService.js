@@ -1,3 +1,6 @@
+/* This JavaScript code is defining a function `getCurrentLocationFromLatitudeAndLongitude` that takes
+latitude and longitude as parameters. It uses Axios to make a GET request to a geocoding API
+endpoint constructed using the provided latitude, longitude, and API key. */
 import axios from 'axios';
 
 const GEOCODING_API_URL = import.meta.env.VITE_GEOCODING_API_URL;

@@ -12,6 +12,11 @@ const getCurrentPosition = () => {
   });
 };
 
+/**
+ * Retrieves weather data from the API based on the current user's location.
+ * @returns {Promise<Object>} The weather data object.
+ * @throws {Error} If there is an error fetching the weather data.
+ */
 const getWeatherDataService = async () => {
   try {
     const [latitude, longitude] = await getCurrentPosition();

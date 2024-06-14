@@ -1,3 +1,55 @@
+/**
+ * WeatherCard component displays the weather information for today and the forecast for the next six days.
+ *
+ * @component
+ * @props {Object} weatherData - The weather data object containing today's weather and the forecast for the next six days.
+ * @props {Object} weatherData.today - The weather data for today.
+ * @props {string} weatherData.today.img - The URL of the weather icon for today.
+ * @props {string} weatherData.today.location - The location for today's weather.
+ * @props {number} weatherData.today.temperature - The temperature for today in Celsius.
+ * @props {string} weatherData.today.conditions - The weather conditions for today.
+ * @props {string} weatherData.today.description - The description of today's weather.
+ * @props {string} weatherData.today.sunrise - The time of sunrise for today.
+ * @props {string} weatherData.today.sunset - The time of sunset for today.
+ * @props {string} weatherData.today.todayDate - The date for today's weather.
+ * @props {Object} weatherData.forecast - The weather forecast for the next six days.
+ * @props {Object} weatherData.forecast.day1 - The weather data for day 1 of the forecast.
+ * @props {string} weatherData.forecast.day1.img - The URL of the weather icon for day 1.
+ * @props {number} weatherData.forecast.day1.temperature - The temperature for day 1 in Celsius.
+ * @props {string} weatherData.forecast.day1.conditions - The weather conditions for day 1.
+ * @props {string} weatherData.forecast.day1.description - The description of day 1's weather.
+ * @props {string} weatherData.forecast.day1.day - The day for day 1's weather.
+ * @props {Object} weatherData.forecast.day2 - The weather data for day 2 of the forecast.
+ * @props {string} weatherData.forecast.day2.img - The URL of the weather icon for day 2.
+ * @props {number} weatherData.forecast.day2.temperature - The temperature for day 2 in Celsius.
+ * @props {string} weatherData.forecast.day2.conditions - The weather conditions for day 2.
+ * @props {string} weatherData.forecast.day2.description - The description of day 2's weather.
+ * @props {string} weatherData.forecast.day2.day - The day for day 2's weather.
+ * @props {Object} weatherData.forecast.day3 - The weather data for day 3 of the forecast.
+ * @props {string} weatherData.forecast.day3.img - The URL of the weather icon for day 3.
+ * @props {number} weatherData.forecast.day3.temperature - The temperature for day 3 in Celsius.
+ * @props {string} weatherData.forecast.day3.conditions - The weather conditions for day 3.
+ * @props {string} weatherData.forecast.day3.description - The description of day 3's weather.
+ * @props {string} weatherData.forecast.day3.day - The day for day 3's weather.
+ * @props {Object} weatherData.forecast.day4 - The weather data for day 4 of the forecast.
+ * @props {string} weatherData.forecast.day4.img - The URL of the weather icon for day 4.
+ * @props {number} weatherData.forecast.day4.temperature - The temperature for day 4 in Celsius.
+ * @props {string} weatherData.forecast.day4.conditions - The weather conditions for day 4.
+ * @props {string} weatherData.forecast.day4.description - The description of day 4's weather.
+ * @props {string} weatherData.forecast.day4.day - The day for day 4's weather.
+ * @props {Object} weatherData.forecast.day5 - The weather data for day 5 of the forecast.
+ * @props {string} weatherData.forecast.day5.img - The URL of the weather icon for day 5.
+ * @props {number} weatherData.forecast.day5.temperature - The temperature for day 5 in Celsius.
+ * @props {string} weatherData.forecast.day5.conditions - The weather conditions for day 5.
+ * @props {string} weatherData.forecast.day5.description - The description of day 5's weather.
+ * @props {string} weatherData.forecast.day5.day - The day for day 5's weather.
+ * @props {Object} weatherData.forecast.day6 - The weather data for day 6 of the forecast.
+ * @props {string} weatherData.forecast.day6.img - The URL of the weather icon for day 6.
+ * @props {number} weatherData.forecast.day6.temperature - The temperature for day 6 in Celsius.
+ * @props {string} weatherData.forecast.day6.conditions - The weather conditions for day 6.
+ * @props {string} weatherData.forecast.day6.description - The description of day 6's weather.
+ * @props {string} weatherData.forecast.day6.day - The day for day 6's weather.
+ */
 <script setup>
 import { defineProps } from 'vue';
 
@@ -190,27 +242,41 @@ const props = defineProps({
   flex-direction: column;
 }
 
-.weather-card__temperature {
+.weather-card__location {
   font-size: 2rem;
   font-weight: bold;
+  color: #ff0000; /* Red color */
+  border-bottom: 1px solid #ccc; /* Add border-bottom for separator effect */
+}
+
+.weather-card__temperature {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0000ff; /* Blue color */
+  border-bottom: 1px solid #ccc; /* Add border-bottom for separator effect */
 }
 
 .weather-card__conditions {
   font-size: 1.5rem;
+  font-weight: bold;
+  color: #00ff00; /* Green color */
 }
 
 .weather-card__description {
   font-size: 1.25rem;
+  font-style: italic;
+  color: #ff00ff; /* Magenta color */
 }
 
 .weather-card__sunrise,
 .weather-card__sunset {
   font-size: 1rem;
+  color: #000000; /* Black color */
 }
 
 .weather-forecast-card {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Change to column */
   margin-top: 1rem;
 }
 
@@ -228,6 +294,16 @@ const props = defineProps({
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem; /* Add margin-bottom for separator effect */
+}
+
+.weather-forecast-card-day1:not(:last-child),
+.weather-forecast-card-day2:not(:last-child),
+.weather-forecast-card-day3:not(:last-child),
+.weather-forecast-card-day4:not(:last-child),
+.weather-forecast-card-day5:not(:last-child),
+.weather-forecast-card-day6:not(:last-child) {
+  border-bottom: 1px solid #ccc; /* Add border-bottom for separator effect */
 }
 
 .weather-forecast-card1-icon,
@@ -267,6 +343,8 @@ const props = defineProps({
 .weather-forecast-card6-temperature {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #ff0000; /* Red color */
+  border-bottom: 1px solid #ccc; /* Add border-bottom for separator effect */
 }
 
 .weather-forecast-card1-conditions,
@@ -276,6 +354,8 @@ const props = defineProps({
 .weather-forecast-card5-conditions,
 .weather-forecast-card6-conditions {
   font-size: 1rem;
+  font-weight: bold;
+  color: #00ff00; /* Green color */
 }
 
 .weather-forecast-card1-description,
@@ -285,5 +365,7 @@ const props = defineProps({
 .weather-forecast-card5-description,
 .weather-forecast-card6-description {
   font-size: 0.75rem;
+  font-style: italic;
+  color: #0000ff; /* Blue color */
 }
 </style>
