@@ -12,6 +12,10 @@ const translateMilitaryTimeToStandardTime = (militaryTime) => {
     return `${hours12}:${minutes} ${period}`;
 };
 
+/**
+ * Returns an array of dates representing a week.
+ * @returns {Array} An array of dates in text format.
+ */
 const getAWeekOfDates = () => {
     return [
         getCurrentDateInTextFormat(),
