@@ -19,9 +19,15 @@ const getCurrentLocationFromLatitudeAndLongitude = async (latitude, longitude) =
             const data = response.data;
             console.log('Location data:', data);
             const city = data.address.city;
+            const village = data.address.village;
             const state = data.address.state;
-            console.log('Current location:', { city, state });
-            return `${city}, ${state}`;
+            if(city === undefined) {
+                return `${village}, ${state}`;
+            } else {
+                return `${city}, ${state}`;
+            }
+            
+            
             case 404:
             throw new Error(`Error ${response.status}: ${response.statusText}`);
             case 500:

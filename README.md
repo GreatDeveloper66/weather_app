@@ -5,28 +5,30 @@ To install the project, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/your-repo.git
+    git clone git@github.com:GreatDeveloper66/weather_app.git
+    or
+    git clone https://github.com/GreatDeveloper66/weather_app.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd your-repo
+    cd weather_app
     ```
 
 3. Install the dependencies:
 
     ```bash
-    npm install
+    npm run build
     ```
 
 4. Start the development server:
 
     ```bash
-    npm run dev
+    npm run start
     ```
 
-5. Open your browser and visit [http://localhost:3000](http://localhost:3000) to see the app in action.
+5. Open your browser and visit [http://localhost:5173](http://localhost:5173) to see the app in action.
 
 That's it! You have successfully installed the project and can now start developing. Happy coding!
 
@@ -78,13 +80,15 @@ To contribute to this project, you can follow these steps:
 2. Clone your forked repository to your local machine:
 
     ```bash
-    git clone https://github.com/your-username/your-forked-repo.git
+    git clone git@github.com:GreatDeveloper66/weather_app.git
+    or 
+    git clone https://github.com/GreatDeveloper66/weather_app.git
     ```
 
 3. Navigate to the project directory:
 
     ```bash
-    cd your-forked-repo
+    cd weather_app
     ```
 
 4. Create a new branch for your changes:
@@ -115,7 +119,7 @@ To contribute to this project, you can follow these steps:
 
 That's it! You have successfully contributed to the project by forking the repository and making a pull request. Thank you for your contribution!
 
-5. Open your browser and visit [http://localhost:3000](http://localhost:3000) to see the app in action.
+5. Open your browser and visit [http://localhost:5173](http://localhost:5173) to see the app in action.
 
 That's it! You have successfully installed the project and can now start developing. Happy coding!
 

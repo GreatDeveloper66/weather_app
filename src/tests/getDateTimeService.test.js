@@ -1,33 +1,33 @@
-import { getAWeekOfDates } from '../services/getDateTimeService';
+import { describe, expect, test } from 'vitest';
+import { getAWeekOfDates, translateMilitaryTimeToStandardTime } from '../services/getDateTimeService';
 
-describe('getAWeekOfDates', () => {
-  it('should return an array of dates for the current week', () => {
-    const expectedDates = [
-      getCurrentDateInTextFormat(),
-      getCurrentDateInTextFormat(1),
-      getCurrentDateInTextFormat(2),
-      getCurrentDateInTextFormat(3),
-      getCurrentDateInTextFormat(4),
-      getCurrentDateInTextFormat(5),
-      getCurrentDateInTextFormat(6)
-    ];
+  
+    
+    describe('getAWeekOfDates', () => {
+      const dates = getAWeekOfDates();
+      const dateFormatter = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      test('should return an array of dates 7 long', () => {
+        expect(dates).toHaveLength(7);
+      });
+      test('should return an array of dates in the format "Month Day, Year"', () => {
+        const today  = new Date();
+        for(let i = 0;i < 7;i++){
+          const expectedDate = new Date(today);
+          expectedDate.setDate(today.getDate() + i);
+          const formattedExpectedDate = dateFormatter.format(expectedDate);
+          expect(dates[i]).toBe(formattedExpectedDate);
+        }
+      });
+    });
 
-    const result = getAWeekOfDates();
+    describe('translateMilitaryTimeToStandardTime', () => {
+      const morningTime = '08:00';
+      const afternoonTime = '14:00';
+      const eveningTime = '20:00';
 
-    expect(result).toEqual(expectedDates);
-  });
-});it('should return an array of dates representing a week', () => {
-  const expectedDates = [
-    getCurrentDateInTextFormat(),
-    getCurrentDateInTextFormat(1),
-    getCurrentDateInTextFormat(2),
-    getCurrentDateInTextFormat(3),
-    getCurrentDateInTextFormat(4),
-    getCurrentDateInTextFormat(5),
-    getCurrentDateInTextFormat(6)
-  ];
-
-  const result = getAWeekOfDates();
-
-  expect(result).toEqual(expectedDates);
-});
+      test('should return a time in the format "h:mm AM/PM"', () => {
+        expect(translateMilitaryTimeToStandardTime(morningTime)).toBe('8:00 AM');
+        expect(translateMilitaryTimeToStandardTime(afternoonTime)).toBe('2:00 PM');
+        expect(translateMilitaryTimeToStandardTime(eveningTime)).toBe('8:00 PM');
+      });
+    });
