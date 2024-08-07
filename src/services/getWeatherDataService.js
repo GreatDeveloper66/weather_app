@@ -17,7 +17,7 @@ const getCurrentPosition = () => {
  * @returns {Promise<Object>} The weather data object.
  * @throws {Error} If there is an error fetching the weather data.
  */
-const getWeatherDataService = async () => {
+const getWeatherDataServiceBasedonCurrentLocation = async () => {
   try {
     const [latitude, longitude] = await getCurrentPosition();
     const url = `${visualCrossingURL}/${latitude},${longitude}?key=${apiKey}`;
@@ -40,4 +40,26 @@ const getWeatherDataService = async () => {
   }
 };
 
-export default getWeatherDataService;
+const getWeatherDataServiceAtLatLong = async (latitude, longitude) => {
+  try {
+    const url = `${visualCrossingURL}/${latitude},${longitude}?key=${apiKey}`;
+    const response = await axios.get(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if (response.status !== 200) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+
+    const weatherData = response.data;
+    console.log('Weather data:', weatherData);
+    return weatherData;
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    throw error;
+  }
+};
+
+export { getWeatherDataServiceBasedonCurrentLocation, getWeatherDataServiceAtLatLong };

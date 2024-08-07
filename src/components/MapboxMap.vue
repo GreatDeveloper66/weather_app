@@ -9,6 +9,8 @@
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
   
   const mapContainer = ref(null);
+
+  const emit = defineEmits(['locationSelected']);
   
   onMounted(() => {
     if (mapContainer.value) {
@@ -24,6 +26,8 @@
         console.log('Longitude:', lng);
         console.log('Latitude:', lat);
         // Fetch weather data using lng and lat
+        emit('locationSelected', { lng, lat });
+        
       });
     } else {
       console.error('Map container is not available');

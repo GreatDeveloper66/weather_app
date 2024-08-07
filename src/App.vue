@@ -2,10 +2,10 @@
 import { ref, onMounted } from 'vue';
 import WeatherCard from './components/WeatherCard.vue';
 import MapboxMap from './components/MapboxMap.vue';
-import getWeatherDataService from './services/getWeatherDataService';
 import getCurrentLocationFromLatitudeAndLongitude from './services/getCurrentLocationService';
 import { getAWeekOfDates, translateMilitaryTimeToStandardTime } from './services/getDateTimeService';
 import getIcons from './services/getImagesService';
+import { getWeatherDataServiceBasedonCurrentLocation, getWeatherDataServiceAtLatLong } from './services/getWeatherDataService';
 import updateWeatherData from './services/updateWeatherDataService';
 
 const weatherData = ref({
@@ -20,9 +20,11 @@ const weatherData = ref({
   }
 });
 
-onMounted(async () => {
+
+
+const updateWeatherCardFromCurrentUserLocation = async () => {
   try {
-    const data = await getWeatherDataService();
+    const data = await getWeatherDataServiceBasedonCurrentLocation();
     data.week = getAWeekOfDates();
     const svgArray = getIcons([data.currentConditions.icon, ...data.days.map(day => day.icon)]);
     data.location = await getCurrentLocationFromLatitudeAndLongitude(data.latitude, data.longitude);
@@ -38,13 +40,38 @@ onMounted(async () => {
   } catch (error) {
     console.error('Error fetching weather data:', error);
   }
+};
+
+const updateWeatherCardFromEmittedLocation = async (location) => {
+  try {
+    const data = await getWeatherDataServiceAtLatLong(location.lat, location.lng);
+    data.week = getAWeekOfDates();
+    const svgArray = getIcons([data.currentConditions.icon, ...data.days.map(day => day.icon)]);
+    data.location = await getCurrentLocationFromLatitudeAndLongitude(data.latitude, data.longitude);
+    data.currentConditions.icon = svgArray[0];
+    data.days.slice(1).forEach((day, index) => {
+      day.icon = svgArray[index + 1];
+    });
+    data.sunriseTime = translateMilitaryTimeToStandardTime(data.currentConditions.sunrise);
+    data.sunsetTime = translateMilitaryTimeToStandardTime(data.currentConditions.sunset);
+    data.svgArray = svgArray;
+
+    weatherData.value = updateWeatherData(weatherData.value, data);
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+  }
+};
+
+onMounted(async () => {
+  updateWeatherCardFromCurrentUserLocation();
 });
+
 </script>
 
 <template>
   <div id="app">
     <WeatherCard :weatherData="weatherData" />
-    <MapboxMap />
+    <MapboxMap @locationSelected = updateWeatherCardFromEmittedLocation />
   </div>
 </template>
 
