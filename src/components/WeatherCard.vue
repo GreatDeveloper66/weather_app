@@ -1,75 +1,10 @@
-/**
- * WeatherCard component displays the weather information for today and the forecast for the next six days.
- *
- * @component
- * @props {Object} weatherData - The weather data object containing today's weather and the forecast for the next six days.
- * @props {Object} weatherData.today - The weather data for today.
- * @props {string} weatherData.today.img - The URL of the weather icon for today.
- * @props {string} weatherData.today.location - The location for today's weather.
- * @props {number} weatherData.today.temperature - The temperature for today in Celsius.
- * @props {string} weatherData.today.conditions - The weather conditions for today.
- * @props {string} weatherData.today.description - The description of today's weather.
- * @props {string} weatherData.today.sunrise - The time of sunrise for today.
- * @props {string} weatherData.today.sunset - The time of sunset for today.
- * @props {string} weatherData.today.todayDate - The date for today's weather.
- * @props {Object} weatherData.forecast - The weather forecast for the next six days.
- * @props {Object} weatherData.forecast.day1 - The weather data for day 1 of the forecast.
- * @props {string} weatherData.forecast.day1.img - The URL of the weather icon for day 1.
- * @props {number} weatherData.forecast.day1.temperature - The temperature for day 1 in Celsius.
- * @props {string} weatherData.forecast.day1.conditions - The weather conditions for day 1.
- * @props {string} weatherData.forecast.day1.description - The description of day 1's weather.
- * @props {string} weatherData.forecast.day1.day - The day for day 1's weather.
- * @props {Object} weatherData.forecast.day2 - The weather data for day 2 of the forecast.
- * @props {string} weatherData.forecast.day2.img - The URL of the weather icon for day 2.
- * @props {number} weatherData.forecast.day2.temperature - The temperature for day 2 in Celsius.
- * @props {string} weatherData.forecast.day2.conditions - The weather conditions for day 2.
- * @props {string} weatherData.forecast.day2.description - The description of day 2's weather.
- * @props {string} weatherData.forecast.day2.day - The day for day 2's weather.
- * @props {Object} weatherData.forecast.day3 - The weather data for day 3 of the forecast.
- * @props {string} weatherData.forecast.day3.img - The URL of the weather icon for day 3.
- * @props {number} weatherData.forecast.day3.temperature - The temperature for day 3 in Celsius.
- * @props {string} weatherData.forecast.day3.conditions - The weather conditions for day 3.
- * @props {string} weatherData.forecast.day3.description - The description of day 3's weather.
- * @props {string} weatherData.forecast.day3.day - The day for day 3's weather.
- * @props {Object} weatherData.forecast.day4 - The weather data for day 4 of the forecast.
- * @props {string} weatherData.forecast.day4.img - The URL of the weather icon for day 4.
- * @props {number} weatherData.forecast.day4.temperature - The temperature for day 4 in Celsius.
- * @props {string} weatherData.forecast.day4.conditions - The weather conditions for day 4.
- * @props {string} weatherData.forecast.day4.description - The description of day 4's weather.
- * @props {string} weatherData.forecast.day4.day - The day for day 4's weather.
- * @props {Object} weatherData.forecast.day5 - The weather data for day 5 of the forecast.
- * @props {string} weatherData.forecast.day5.img - The URL of the weather icon for day 5.
- * @props {number} weatherData.forecast.day5.temperature - The temperature for day 5 in Celsius.
- * @props {string} weatherData.forecast.day5.conditions - The weather conditions for day 5.
- * @props {string} weatherData.forecast.day5.description - The description of day 5's weather.
- * @props {string} weatherData.forecast.day5.day - The day for day 5's weather.
- * @props {Object} weatherData.forecast.day6 - The weather data for day 6 of the forecast.
- * @props {string} weatherData.forecast.day6.img - The URL of the weather icon for day 6.
- * @props {number} weatherData.forecast.day6.temperature - The temperature for day 6 in Celsius.
- * @props {string} weatherData.forecast.day6.conditions - The weather conditions for day 6.
- * @props {string} weatherData.forecast.day6.description - The description of day 6's weather.
- * @props {string} weatherData.forecast.day6.day - The day for day 6's weather.
- */
-<script setup>
-import { defineProps } from 'vue';
-
-const props = defineProps({
-  weatherData: {
-    type: Object,
-    required: true
-  }
-});
-</script>
-
 <template>
   <div v-if="weatherData && weatherData.today && weatherData.forecast">
-    <h1>Weather Forecast</h1>
+    <h1 class="card-heading">Weather Forecast</h1>
     <div class="weather-card">
-      
       <div class="weather-card__icon">
         <img :src="weatherData.today.img" alt="Weather icon" />
       </div>
-
       <div class="weather-card__details">
         <div class="weather-card__location">
           {{ weatherData.today.location }}
@@ -96,118 +31,22 @@ const props = defineProps({
     </div>
     <div class="weather-forecast-card">
       <!-- Repeat for each day -->
-      <div class="weather-forecast-card-day1">
-        <div class="weather-forecast-card1-icon">
-          <img :src="weatherData.forecast.day1.img" alt="Weather icon" />
+      <div class="weather-forecast-card-day" v-for="(day, index) in weatherData.forecast" :key="index">
+        <div class="weather-forecast-card-icon">
+          <img :src="day.img" alt="Weather icon" />
         </div>
-        <div class="weather-forecast-card1-details">
-          <div class="weather-forecast-card1-temperature">
-            {{ weatherData.forecast.day1.temperature }}°C
+        <div class="weather-forecast-card-details">
+          <div class="weather-forecast-card-temperature">
+            {{ day.temperature }}°C
           </div>
-          <div class="weather-forecast-card1-conditions">
-            {{ weatherData.forecast.day1.conditions }}
+          <div class="weather-forecast-card-conditions">
+            {{ day.conditions }}
           </div>
-          <div class="weather-forecast-card1-description">
-            {{ weatherData.forecast.day1.description }}
+          <div class="weather-forecast-card-description">
+            {{ day.description }}
           </div>
           <div class="date">
-            {{ weatherData.forecast.day1.day }}
-          </div>
-        </div>
-      </div>
-      <!-- Repeat similar structure for day2, day3, day4, day5, and day6 -->
-      <div class="weather-forecast-card-day2">
-        <div class="weather-forecast-card2-icon">
-          <img :src="weatherData.forecast.day2.img" alt="Weather icon" />
-        </div>
-        <div class="weather-forecast-card2-details">
-          <div class="weather-forecast-card2-temperature">
-            {{ weatherData.forecast.day2.temperature }}°C
-          </div>
-          <div class="weather-forecast-card2-conditions">
-            {{ weatherData.forecast.day2.conditions }}
-          </div>
-          <div class="weather-forecast-card2-description">
-            {{ weatherData.forecast.day2.description }}
-          </div>
-          <div class="date">
-            {{ weatherData.forecast.day2.day }}
-          </div>
-        </div>
-      </div>
-      <div class="weather-forecast-card-day3">
-        <div class="weather-forecast-card3-icon">
-          <img :src="weatherData.forecast.day3.img" alt="Weather icon" />
-        </div>
-        <div class="weather-forecast-card3-details">
-          <div class="weather-forecast-card3-temperature">
-            {{ weatherData.forecast.day3.temperature }}°C
-          </div>
-          <div class="weather-forecast-card3-conditions">
-            {{ weatherData.forecast.day3.conditions }}
-          </div>
-          <div class="weather-forecast-card3-description">
-            {{ weatherData.forecast.day3.description }}
-          </div>
-          <div class="date">
-            {{ weatherData.forecast.day3.day }}
-          </div>
-        </div>
-      </div>
-      <div class="weather-forecast-card-day4">
-        <div class="weather-forecast-card4-icon">
-          <img :src="weatherData.forecast.day4.img" alt="Weather icon" />
-        </div>
-        <div class="weather-forecast-card4-details">
-          <div class="weather-forecast-card4-temperature">
-            {{ weatherData.forecast.day4.temperature }}°C
-          </div>
-          <div class="weather-forecast-card4-conditions">
-            {{ weatherData.forecast.day4.conditions }}
-          </div>
-          <div class="weather-forecast-card4-description">
-            {{ weatherData.forecast.day4.description }}
-          </div>
-          <div class="date">
-            {{ weatherData.forecast.day4.day }}
-          </div>
-        </div>
-      </div>
-      <div class="weather-forecast-card-day5">
-        <div class="weather-forecast-card5-icon">
-          <img :src="weatherData.forecast.day5.img" alt="Weather icon" />
-        </div>
-        <div class="weather-forecast-card5-details">
-          <div class="weather-forecast-card5-temperature">
-            {{ weatherData.forecast.day5.temperature }}°C
-          </div>
-          <div class="weather-forecast-card5-conditions">
-            {{ weatherData.forecast.day5.conditions }}
-          </div>
-          <div class="weather-forecast-card5-description">
-            {{ weatherData.forecast.day5.description }}
-          </div>
-          <div class="date">
-            {{ weatherData.forecast.day5.day }}
-          </div>
-        </div>
-      </div>
-      <div class="weather-forecast-card-day6">
-        <div class="weather-forecast-card6-icon">
-          <img :src="weatherData.forecast.day6.img" alt="Weather icon" />
-        </div>
-        <div class="weather-forecast-card6-details">
-          <div class="weather-forecast-card6-temperature">
-            {{ weatherData.forecast.day6.temperature }}°C
-          </div>
-          <div class="weather-forecast-card6-conditions">
-            {{ weatherData.forecast.day6.conditions }}
-          </div>
-          <div class="weather-forecast-card6-description">
-            {{ weatherData.forecast.day6.description }}
-          </div>
-          <div class="date">
-            {{ weatherData.forecast.day6.day }}
+            {{ day.day }}
           </div>
         </div>
       </div>
@@ -218,9 +57,19 @@ const props = defineProps({
   </div>
 </template>
 
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  weatherData: {
+    type: Object,
+    required: true
+  }
+});
+</script>
 
 <style scoped>
-.weather-card {
+.weather-card, .weather-forecast-card-day {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -228,18 +77,19 @@ const props = defineProps({
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: white;
 }
 
-.weather-card__icon {
+.weather-card__icon, .weather-forecast-card-icon {
   margin-right: 1rem;
 }
 
-.weather-card__icon img {
+.weather-card__icon img, .weather-forecast-card-icon img {
   width: 100px;
   height: 100px;
 }
 
-.weather-card__details {
+.weather-card__details, .weather-forecast-card-details {
   display: flex;
   flex-direction: column;
 }
@@ -247,127 +97,44 @@ const props = defineProps({
 .weather-card__location {
   font-size: 2rem;
   font-weight: bold;
-  color: #ff0000; /* Red color */
-  border-bottom: 1px solid #ccc; /* Add border-bottom for separator effect */
+  color: #333;
 }
 
-.weather-card__temperature {
+.weather-card__temperature, .weather-forecast-card-temperature {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #0000ff; /* Blue color */
-  border-bottom: 1px solid #ccc; /* Add border-bottom for separator effect */
+  color: #ff0000;
 }
 
-.weather-card__conditions {
+.weather-card__conditions, .weather-forecast-card-conditions {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #00ff00; /* Green color */
+  color: #00ff00;
 }
 
-.weather-card__description {
+.weather-card__description, .weather-forecast-card-description {
   font-size: 1.25rem;
   font-style: italic;
-  color: #ff00ff; /* Magenta color */
+  color: #333;
 }
 
-.weather-card__sunrise,
-.weather-card__sunset {
+.weather-card__sunrise, .weather-card__sunset, .date {
   font-size: 1rem;
-  color: #000000; /* Black color */
+  color: #666;
 }
 
 .weather-forecast-card {
   display: flex;
-  flex-direction: column; /* Change to column */
+  flex-direction: column;
   margin-top: 1rem;
 }
 
-.weather-forecast-card-day1,
-.weather-forecast-card-day2,
-.weather-forecast-card-day3,
-.weather-forecast-card-day4,
-.weather-forecast-card-day5,
-.weather-forecast-card-day6 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem; /* Add margin-bottom for separator effect */
+.weather-forecast-card-day {
+  margin-bottom: 1rem;
 }
 
-.weather-forecast-card-day1:not(:last-child),
-.weather-forecast-card-day2:not(:last-child),
-.weather-forecast-card-day3:not(:last-child),
-.weather-forecast-card-day4:not(:last-child),
-.weather-forecast-card-day5:not(:last-child),
-.weather-forecast-card-day6:not(:last-child) {
-  border-bottom: 1px solid #ccc; /* Add border-bottom for separator effect */
-}
-
-.weather-forecast-card1-icon,
-.weather-forecast-card2-icon,
-.weather-forecast-card3-icon,
-.weather-forecast-card4-icon,
-.weather-forecast-card5-icon,
-.weather-forecast-card6-icon {
-  margin-right: 1rem;
-}
-
-.weather-forecast-card1-icon img,
-.weather-forecast-card2-icon img,
-.weather-forecast-card3-icon img,
-.weather-forecast-card4-icon img,
-.weather-forecast-card5-icon img,
-.weather-forecast-card6-icon img {
-  width: 50px;
-  height: 50px;
-}
-
-.weather-forecast-card1-details,
-.weather-forecast-card2-details,
-.weather-forecast-card3-details,
-.weather-forecast-card4-details,
-.weather-forecast-card5-details,
-.weather-forecast-card6-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.weather-forecast-card1-temperature,
-.weather-forecast-card2-temperature,
-.weather-forecast-card3-temperature,
-.weather-forecast-card4-temperature,
-.weather-forecast-card5-temperature,
-.weather-forecast-card6-temperature {
+.card-heading {
   font-size: 1.5rem;
-  font-weight: bold;
-  color: #ff0000; /* Red color */
-  border-bottom: 1px solid #ccc; /* Add border-bottom for separator effect */
-}
-
-.weather-forecast-card1-conditions,
-.weather-forecast-card2-conditions,
-.weather-forecast-card3-conditions,
-.weather-forecast-card4-conditions,
-.weather-forecast-card5-conditions,
-.weather-forecast-card6-conditions {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #00ff00; /* Green color */
-}
-
-.weather-forecast-card1-description,
-.weather-forecast-card2-description,
-.weather-forecast-card3-description,
-.weather-forecast-card4-description,
-.weather-forecast-card5-description,
-.weather-forecast-card6-description {
-  font-size: 0.75rem;
-  font-style: italic;
-  color: #0000ff; /* Blue color */
+  margin-bottom: 1rem;
 }
 </style>

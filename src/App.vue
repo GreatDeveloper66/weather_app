@@ -20,8 +20,6 @@ const weatherData = ref({
   }
 });
 
-
-
 const updateWeatherCardFromCurrentUserLocation = async () => {
   try {
     const data = await getWeatherDataServiceBasedonCurrentLocation();
@@ -65,25 +63,16 @@ const updateWeatherCardFromEmittedLocation = async (location) => {
 onMounted(async () => {
   updateWeatherCardFromCurrentUserLocation();
 });
-
 </script>
 
 <template>
   <div id="app">
     <WeatherCard :weatherData="weatherData" />
-    <MapboxMap @locationSelected = updateWeatherCardFromEmittedLocation />
+    <MapboxMap @locationSelected="updateWeatherCardFromEmittedLocation" />
   </div>
 </template>
 
 <style scoped>
-/* #app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: #2c3e50; 
-}*/
 #app {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -91,6 +80,12 @@ onMounted(async () => {
   padding: 20px;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
-  background-color: grey;
+}
+
+@media (max-width: 768px) {
+  #app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
 }
 </style>
