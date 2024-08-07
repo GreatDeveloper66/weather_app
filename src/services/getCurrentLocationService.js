@@ -15,23 +15,19 @@ const getCurrentLocationFromLatitudeAndLongitude = async (latitude, longitude) =
         switch (response.status) {
             case 401:
             throw new Error(`Error ${response.status}: ${response.statusText}`);
+
             case 200:
             const data = response.data;
-            console.log('Location data:', data);
-            const city = data.address.city;
-            const village = data.address.village;
+            const city = data.address.city || data.address.town || data.address.village;
             const state = data.address.state;
-            if(city === undefined) {
-                return `${village}, ${state}`;
-            } else {
-                return `${city}, ${state}`;
-            }
-            
+            return `${city}, ${state}`;
             
             case 404:
             throw new Error(`Error ${response.status}: ${response.statusText}`);
+
             case 500:
             throw new Error(`Error ${response.status}: ${response.statusText}`);
+            
             default:
             throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
