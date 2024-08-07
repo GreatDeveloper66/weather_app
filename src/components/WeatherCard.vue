@@ -63,7 +63,9 @@ const props = defineProps({
 
 <template>
   <div v-if="weatherData && weatherData.today && weatherData.forecast">
+    <h1>Weather Forecast</h1>
     <div class="weather-card">
+      
       <div class="weather-card__icon">
         <img :src="weatherData.today.img" alt="Weather icon" />
       </div>

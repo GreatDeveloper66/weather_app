@@ -76,12 +76,21 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-#app {
+/* #app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  color: #2c3e50; 
+}*/
+#app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
+  background-color: grey;
 }
 </style>
