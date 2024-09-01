@@ -16,8 +16,11 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.6",
     "axios": "^1.7.2",
+    "concaveman": "^1.2.1",
+    "earcut": "^3.0.0",
     "jest": "^29.7.0",
     "mapbox-gl": "^3.5.2",
+    "rbush": "^4.0.1",
     "vue": "^3.4.36"
   },
   "devDependencies": {
