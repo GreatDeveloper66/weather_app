@@ -80,6 +80,13 @@ onMounted(async () => {
   padding: 20px;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
+  background-color: darkgrey;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#app > * {
+  height: 100%;
 }
 
 @media (max-width: 768px) {

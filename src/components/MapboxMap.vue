@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="map-heading">Interactive Map - Click to get weather data</h1>
+    <h1 class="map-heading">Interactive Map: Click to View Weather at a Location</h1>
     <div ref="mapContainer" style="height: 500px; width: 100%;"></div>
   </div>
 </template>
@@ -43,7 +43,10 @@ onMounted(() => {
 }
 
 .map-heading {
+  text-align: center;
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  font-weight: bold;
 }
+
 </style>
