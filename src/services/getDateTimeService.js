@@ -18,7 +18,7 @@ const translateMilitaryTimeToStandardTime = (militaryTime) => {
  */
 const getAWeekOfDates = () => {
     return [
-        getCurrentDateInTextFormat(),
+        "TODAY",
         getCurrentDateInTextFormat(1),
         getCurrentDateInTextFormat(2),
         getCurrentDateInTextFormat(3),
