@@ -38,6 +38,7 @@ That's it! You have successfully installed the project and can now start develop
 - [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
 
 ### Usage
+
 To use and launch the project, follow these steps:
 
 1. Make sure you have Node.js installed on your machine.
@@ -73,6 +74,7 @@ To use and launch the project, follow these steps:
 That's it! You have successfully launched the project and can now start using it. Happy coding!
 
 ### Contributing
+
 To contribute to this project, you can follow these steps:
 
 1. Fork the project repository by clicking on the "Fork" button at the top right corner of the repository page.
@@ -119,14 +121,10 @@ To contribute to this project, you can follow these steps:
 
 That's it! You have successfully contributed to the project by forking the repository and making a pull request. Thank you for your contribution!
 
-5. Open your browser and visit [http://localhost:5173](http://localhost:5173) to see the app in action.
+11. Open your browser and visit [http://localhost:5173](http://localhost:5173) to see the app in action.
 
 That's it! You have successfully installed the project and can now start developing. Happy coding!
 
-
 ### License
+
 This project is licensed under the [MIT License](LICENSE).
-
-
-
-

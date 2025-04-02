@@ -12,6 +12,26 @@ import { ref } from 'vue';
 //   }
 // });
 
+/**
+ * Updates the weather data object with the provided data.
+ *
+ * @param {Object} weatherData - The existing weather data object to be updated.
+ * @param {Object} data - The new data to update the weather data object with.
+ * @param {Object} data.currentConditions - The current weather conditions.
+ * @param {number} data.currentConditions.temp - The current temperature.
+ * @param {string} data.currentConditions.conditions - The current weather conditions (e.g., "Sunny").
+ * @param {string} data.currentConditions.description - A description of the current weather.
+ * @param {string} data.sunriseTime - The time of sunrise.
+ * @param {string} data.sunsetTime - The time of sunset.
+ * @param {string[]} data.svgArray - An array of SVG image URLs for weather icons.
+ * @param {string[]} data.week - An array of dates for the current week.
+ * @param {string} data.location - The location for the weather data.
+ * @param {Object[]} data.days - An array of forecast data for the upcoming days.
+ * @param {number} data.days[].temp - The forecasted temperature for a specific day.
+ * @param {string} data.days[].conditions - The forecasted weather conditions for a specific day.
+ * @param {string} data.days[].description - A description of the forecasted weather for a specific day.
+ * @returns {Object} The updated weather data object.
+ */
 const updateWeatherData = (weatherData, data) => {
   weatherData = {
     today: {

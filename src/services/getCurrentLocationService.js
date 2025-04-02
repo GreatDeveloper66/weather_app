@@ -7,6 +7,20 @@ const GEOCODING_API_URL = import.meta.env.VITE_GEOCODING_API_URL;
 const GEOCODING_API_KEY = import.meta.env.VITE_GEOCODING_API_KEY;
 
 
+/**
+ * Fetches the current location based on latitude and longitude using a geocoding API.
+ *
+ * @async
+ * @function getCurrentLocationFromLatitudeAndLongitude
+ * @param {number} latitude - The latitude of the location.
+ * @param {number} longitude - The longitude of the location.
+ * @returns {Promise<string>} A promise that resolves to a string containing the city and state of the location.
+ * @throws {Error} Throws an error if the API request fails or returns an unexpected status code.
+ *
+ * @example
+ * const location = await getCurrentLocationFromLatitudeAndLongitude(37.7749, -122.4194);
+ * console.log(location); // Output: "San Francisco, California"
+ */
 const getCurrentLocationFromLatitudeAndLongitude = async (latitude, longitude) => {
     const AXIOS_API_URL = `${GEOCODING_API_URL}${latitude}&lon=${longitude}&api_key=${GEOCODING_API_KEY}`;
     try {

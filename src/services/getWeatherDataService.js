@@ -17,6 +17,18 @@ const getCurrentPosition = () => {
  * @returns {Promise<Object>} The weather data object.
  * @throws {Error} If there is an error fetching the weather data.
  */
+/**
+ * Fetches weather data based on the user's current geographical location.
+ * 
+ * This function retrieves the user's current latitude and longitude using the 
+ * `getCurrentPosition` function, constructs a request URL using the Visual Crossing 
+ * Weather API, and fetches the weather data for the specified location.
+ * 
+ * @async
+ * @function getWeatherDataServiceBasedonCurrentLocation
+ * @returns {Promise<Object>} A promise that resolves to the weather data object.
+ * @throws {Error} Throws an error if the request fails or the response status is not 200.
+ */
 const getWeatherDataServiceBasedonCurrentLocation = async () => {
   try {
     const [latitude, longitude] = await getCurrentPosition();
