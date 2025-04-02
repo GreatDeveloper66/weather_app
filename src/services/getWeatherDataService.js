@@ -1,17 +1,3 @@
-import axios from 'axios';
-
-const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-const visualCrossingURL = import.meta.env.VITE_VISUAL_CROSSING_API_URL;
-
-const getCurrentPosition = () => {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
-      position => resolve([position.coords.latitude, position.coords.longitude]),
-      error => reject(error)
-    );
-  });
-};
-
 /**
  * Retrieves weather data from the API based on the current user's location.
  * @returns {Promise<Object>} The weather data object.
@@ -29,6 +15,21 @@ const getCurrentPosition = () => {
  * @returns {Promise<Object>} A promise that resolves to the weather data object.
  * @throws {Error} Throws an error if the request fails or the response status is not 200.
  */
+
+import axios from 'axios';
+
+const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+const visualCrossingURL = import.meta.env.VITE_VISUAL_CROSSING_API_URL;
+
+const getCurrentPosition = () => {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      position => resolve([position.coords.latitude, position.coords.longitude]),
+      error => reject(error)
+    );
+  });
+};
+
 const getWeatherDataServiceBasedonCurrentLocation = async () => {
   try {
     const [latitude, longitude] = await getCurrentPosition();

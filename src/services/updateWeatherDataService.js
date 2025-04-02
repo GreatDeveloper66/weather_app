@@ -1,16 +1,3 @@
-import { ref } from 'vue';
-
-// const weatherData = ref({
-//   today: {},
-//   forecast: {
-//     day1: {},
-//     day2: {},
-//     day3: {},
-//     day4: {},
-//     day5: {},
-//     day6: {}
-//   }
-// });
 
 /**
  * Updates the weather data object with the provided data.

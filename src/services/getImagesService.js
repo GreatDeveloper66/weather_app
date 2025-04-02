@@ -1,4 +1,3 @@
-import weather_conditions from '../assets/json/weather_conditions.json';
 /**
  * Returns an array of URLs for weather icons based on the provided weather conditions.
  *
@@ -14,6 +13,9 @@ import weather_conditions from '../assets/json/weather_conditions.json';
  * Each weather condition in the input array is mapped to its corresponding icon file.
  * If a weather condition does not have a matching icon, a default icon ('weather.svg') is used.
  */
+
+import weather_conditions from '../assets/json/weather_conditions.json';
+
 const getIcons = (svgArray) => {
     return svgArray.map((weather_condition) => {
         const icon = weather_conditions[weather_condition] || 'weather.svg';
